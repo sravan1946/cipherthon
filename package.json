@@ -1,0 +1,14 @@
+{
+  "name": "cipherthon",
+  "version": "1.0.0",
+  "description": "1. Open terminal\r 2. `pip install venv`\r 3. `python -m venv cipher`\r 4. `cipher\\Scripts\\activate`\r 5. `pip install flask`\r 6. `python app.py --debug`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
