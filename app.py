@@ -57,6 +57,7 @@ def load_user(user_id):
 
 
 @app.route("/")
+@app.route("/index.html")
 @app.route("/index")
 def index():
     return render_template("index.html", current_user=current_user)
@@ -132,8 +133,10 @@ def user_dashboard():
 @app.route("/logout")
 @login_required
 def logout():
+    if not current_user.is_authenticated:
+        return redirect(url_for("user_login"))
     logout_user()
-    return redirect(url_for("index"))
+    return render_template("index")
 
 @app.route("/profile/<int:pid>")
 def profile(pid):
