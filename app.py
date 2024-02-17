@@ -25,7 +25,7 @@ def index():
 def user_login():
     if current_user.is_authenticated:
         return redirect(url_for("index"))
-    with open("users.json", "r") as f:
+    with open("./data/users.json", "r") as f:
         users = json.load(f)
     if request.method == "POST":
         email: str = request.form["email"]
@@ -35,7 +35,7 @@ def user_login():
                 user_obj = User(**user)
                 login_user(user_obj)
                 return redirect(url_for("index"))
-    return render_template("login.html")
+    return render_template("userlogin.html")
 
 @app.route("/userregister", methods=["POST", "GET"])
 def user_register():
@@ -57,11 +57,11 @@ def user_register():
             gender=gender,
             DOB=DOB
         )
-        with open("users.json", "r") as f:
+        with open("./data/users.json", "r") as f:
             users = json.load(f)
         users.append(user)
-        with open("users.json", "w") as f:
+        with open("./data/users.json", "w") as f:
             json.dump(users, f)
         login_user(user)
         return redirect(url_for("index"))
-    return render_template("register.html")
+    return render_template("userregister.html")
