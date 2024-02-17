@@ -57,6 +57,7 @@ def load_user(user_id):
 
 
 @app.route("/")
+@app.route("/index")
 def index():
     return render_template("index.html", current_user=current_user)
 
