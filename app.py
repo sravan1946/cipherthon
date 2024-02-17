@@ -1,22 +1,39 @@
 from flask import Flask, request, jsonify, session, redirect, url_for, render_template
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
 import json
 from typing import TypedDict
 import datetime
 import uuid
+import os
 
 # define a user class using typeddict
-class User(TypedDict):
-    pid: int = uuid.uuid4().int
-    name: str = ""
-    email: str = ""
-    password: str = ""
-    phone_no: int = 0
-    gender: str = ""
-    DOB: datetime.date = None
+class User(UserMixin):
+    def __init__(self, pid, name, email, password, phone_no, gender, DOB):
+        self.pid = pid
+        self.name = name
+        self.email = email
+        self.password = password
+        self.phone_no = phone_no
+        self.gender = gender
+        self.DOB = DOB
+        print(self.__dict__())
+    
+    def get_id(self):
+        return str(self.pid)
 
+    def __dict__(self):
+        return {
+            "pid": self.pid,
+            "name": self.name,
+            "email": self.email,
+            "password": self.password,
+            "phone_no": self.phone_no,
+            "gender": self.gender,
+            "DOB": self.DOB
+        }
+    
 app = Flask(__name__)
-
+app.secret_key = os.urandom(24)
 login_manager = LoginManager(app)
 login_manager.init_app(app)
 
@@ -64,6 +81,8 @@ def user_register():
     if current_user.is_authenticated:
         return redirect(url_for("index"))
     if request.method == "POST":
+        pid = uuid.uuid4().int
+        print(request.form, pid)
         name: str = request.form["name"]
         email: str = request.form["email"]
         password: str = request.form["password"]
@@ -71,7 +90,7 @@ def user_register():
         gender: str = request.form["gender"]
         DOB: datetime.date = request.form["DOB"]
         user = User(
-            pid=uuid.uuid4().int,
+            pid=pid,
             name=name,
             email=email,
             password=password,
@@ -88,7 +107,7 @@ def user_register():
             users = []
         users.append(user)
         with open("./data/users.json", "w") as f:
-            json.dump(users, f)
+            json.dump(users, f, default = lambda x: x.__dict__())
         login_user(user)
         return redirect(url_for("index"))
     return render_template("userregister.html")
