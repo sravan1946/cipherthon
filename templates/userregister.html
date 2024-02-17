@@ -1,5 +1,3 @@
-<!-- FILEPATH: /d:/Ciphertho/cipherthon/templates/usersignup.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,53 +6,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Signup</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom style for dark background */
+    body {
+      background-color: #222; /* Dark background color */
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h2 class="text-center mb-4">Sign Up</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
-                <div class="form-group">
-                        <label for="dateOfBirth">Date of Birth</label>
-                        <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter your date of birth">
-                </div>
-                <div class="form-group">
-                        <label for="phoneNumber">Phone Number</label>
-                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
-                </div>
-                <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <select class="form-control" id="gender">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                        </select>
-                </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body>
+  <div class="container">
+    <div class="row justify-content-center mt-5"> <!-- Added mt-5 class for margin-top -->
+      <div class="col-md-6">
+        <div class="card bg-white"> <!-- Added card and bg-dark classes -->
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Sign Up</h2> <!-- Added mb-4 class for margin-bottom -->
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+              </div>
+              <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter your date of birth">
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
+              </div>
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
