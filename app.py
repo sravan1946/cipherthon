@@ -24,7 +24,6 @@ class User(UserMixin):
         self.phone_no = phone_no
         self.gender = gender
         self.DOB = DOB
-        print(self.__dict__())
 
     def get_id(self):
         return str(self.pid)
@@ -74,7 +73,6 @@ def user_login():
             json.dump([], f)
         users = []
     if request.method == "POST":
-        print(request.form)
         email: str = request.form["email"]
         password: str = request.form["password"]
         logged_in = False
@@ -83,7 +81,7 @@ def user_login():
                 user = User(**user)
                 login_user(user)
                 logged_in = True
-                return redirect(url_for("userdashboard"))
+                return render_template("userdashboard.html")
         if not logged_in:
             return render_template("userlogin.html", error="Invalid email or password")
     return render_template("userlogin.html")
@@ -92,10 +90,9 @@ def user_login():
 @app.route("/userregister", methods=["POST", "GET"])
 def user_register():
     if current_user.is_authenticated:
-        return redirect(url_for("userdashboard"))
+        return render_template("userdashboard")
     if request.method == "POST":
         pid = uuid.uuid4().int
-        print(request.form, pid)
         name: str = request.form["name"]
         email: str = request.form["email"]
         password: str = request.form["password"]
@@ -122,15 +119,15 @@ def user_register():
         with open("./data/users.json", "w") as f:
             json.dump(users, f, default=lambda x: x.__dict__())
         login_user(user)
-        return redirect(url_for("userlogin"))
+        return render_template("userlogin")
     return render_template("userregister.html")
 
 
 @app.route("/userdashboard")
 @login_required
 def user_dashboard():
-    qr = request.environ.get('HTTP_X_REAL_IP', request.remote_addr) + "/profile/" + current_user.pid
-    print(qr)
+    #qr = request.environ.get('HTTP_X_REAL_IP', request.remote_addr) + "/profile/" + current_user.pid
+    #print(qr)
     return render_template("userdashboard.html")
 
 @app.route("/logout")
