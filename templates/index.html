@@ -20,8 +20,9 @@
                 <a class="mr-5 hover:text-gray-900">Contact Us</a>
             </nav>
             {% if current_user.is_anonymous %}
+            <form action="{{url_for('user_login')}}">
             <button
-                class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" onclick="{{url_for('user_login')}}">Log
+                class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Log
                 in
 
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -29,7 +30,9 @@
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
             </button>
+            </form>
 
+            <form action="{{url_for('user_register')}}">
             <button
                 class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 ml-2">Signup
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -37,7 +40,9 @@
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
             </button>
+            </form>
             {% else %}
+            <form action="{{url_for('logout')}}">
             <button
                 class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Logout
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -45,6 +50,7 @@
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
             </button>
+            </form>
             {% endif %}
 
         </div>
