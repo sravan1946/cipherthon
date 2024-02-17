@@ -1,9 +1,17 @@
 from flask import Flask, request, jsonify, session, redirect, url_for, render_template
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
+from flask_login import (
+    LoginManager,
+    login_user,
+    login_required,
+    logout_user,
+    current_user,
+    UserMixin,
+)
 import json
 import datetime
 import uuid
 import os
+
 
 # define a user class using typeddict
 class User(UserMixin):
@@ -16,7 +24,7 @@ class User(UserMixin):
         self.gender = gender
         self.DOB = DOB
         print(self.__dict__())
-    
+
     def get_id(self):
         return str(self.pid)
 
@@ -28,13 +36,15 @@ class User(UserMixin):
             "password": self.password,
             "phone_no": self.phone_no,
             "gender": self.gender,
-            "DOB": self.DOB
+            "DOB": self.DOB,
         }
-    
+
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 login_manager = LoginManager(app)
 login_manager.init_app(app)
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -45,9 +55,11 @@ def load_user(user_id):
             return User(**user)
     return None
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/userlogin", methods=["POST", "GET"])
 def user_login():
@@ -75,6 +87,7 @@ def user_login():
             return render_template("userlogin.html", error="Invalid email or password")
     return render_template("userlogin.html")
 
+
 @app.route("/userregister", methods=["POST", "GET"])
 def user_register():
     if current_user.is_authenticated:
@@ -95,7 +108,7 @@ def user_register():
             password=password,
             phone_no=phone_no,
             gender=gender,
-            DOB=DOB
+            DOB=DOB,
         )
         try:
             with open("./data/users.json", "r") as f:
@@ -106,10 +119,11 @@ def user_register():
             users = []
         users.append(user)
         with open("./data/users.json", "w") as f:
-            json.dump(users, f, default = lambda x: x.__dict__())
+            json.dump(users, f, default=lambda x: x.__dict__())
         login_user(user)
         return redirect(url_for("index"))
     return render_template("userregister.html")
+
 
 @app.route("/logout")
 @login_required
