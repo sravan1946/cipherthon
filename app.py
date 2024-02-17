@@ -17,6 +17,9 @@ class User(TypedDict):
 
 app = Flask(__name__)
 
+login_manager = LoginManager(app)
+# login_manager.init_app(app)
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -35,6 +38,7 @@ def user_login():
                 user_obj = User(**user)
                 login_user(user_obj)
                 return redirect(url_for("index"))
+            return render_template("index.html", error="Invalid email or password")
     return render_template("userlogin.html")
 
 @app.route("/userregister", methods=["POST", "GET"])
