@@ -45,14 +45,19 @@ def user_login():
             json.dump([], f)
         users = []
     if request.method == "POST":
+        print(request.form)
         email: str = request.form["email"]
         password: str = request.form["password"]
+        logged_in = False
         for user in users:
             if user["email"] == email and user["password"] == password:
                 user = User(**user)
                 login_user(user)
+                logged_in = True
                 return redirect(url_for("index"))
-    return render_template("userlogin.html", error="Invalid email or password")
+        if not logged_in:
+            return render_template("userlogin.html", error="Invalid email or password")
+    return render_template("userlogin.html")
 
 @app.route("/userregister", methods=["POST", "GET"])
 def user_register():
