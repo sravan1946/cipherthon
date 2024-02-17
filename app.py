@@ -49,11 +49,10 @@ def user_login():
         password: str = request.form["password"]
         for user in users:
             if user["email"] == email and user["password"] == password:
-                user_obj = User(**user)
-                login_user(user_obj)
+                user = User(**user)
+                login_user(user)
                 return redirect(url_for("index"))
-            return render_template("index.html", error="Invalid email or password")
-    return render_template("userlogin.html")
+    return render_template("userlogin.html", error="Invalid email or password")
 
 @app.route("/userregister", methods=["POST", "GET"])
 def user_register():
