@@ -15,6 +15,9 @@
     .center-box {
       margin-top: 20vh; /* Adjust as needed */
     }
+    .error-text {
+      color: red; /* Change the text color for error messages */
+    }
   </style>
 </head>
 
@@ -34,7 +37,7 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
               </div>
-              {{error}}
+              <span class="error-text">{{error}}</span>
               <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
           </div>
