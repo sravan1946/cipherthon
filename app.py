@@ -10,7 +10,7 @@ from flask_login import (
 import json
 import datetime
 import uuid
-from utils import gen_qr_link
+from utils import gen_qrcode
 import os
 
 
@@ -81,7 +81,7 @@ def user_login():
                 user = User(**user)
                 login_user(user)
                 logged_in = True
-                return render_template("userdashboard.html")
+                return render_template("userdashboard.html", qrcode=gen_qrcode(current_user))
         if not logged_in:
             return render_template("userlogin.html", error="Invalid email or password")
     return render_template("userlogin.html")
@@ -126,12 +126,19 @@ def user_register():
 @app.route("/userdashboard")
 @login_required
 def user_dashboard():
-    #qr = request.environ.get('HTTP_X_REAL_IP', request.remote_addr) + "/profile/" + current_user.pid
-    #print(qr)
-    return render_template("userdashboard.html")
+    return render_template("userdashboard.html", qrcode=gen_qrcode(current_user.pid))
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("index"))
+
+@app.route("/profile/<int:pid>")
+def profile(pid):
+    with open("./data/users.json", "r") as f:
+        users = json.load(f)
+    for user in users:
+        if user["pid"] == pid:
+            return jsonify(user)
+    return "User not found", 404
