@@ -21,7 +21,7 @@
         <div class="card bg-white"> <!-- Added card and bg-dark classes -->
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Sign Up</h2> <!-- Added mb-4 class for margin-bottom -->
-            <form>
+            <form action="{{url_for('user_register')}}" method="POST">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
@@ -36,15 +36,15 @@
               </div>
               <div class="form-group">
                 <label for="dateOfBirth">Date of Birth</label>
-                <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter your date of birth">
+                <input type="date" class="form-control" id="DOB" name="DOB" placeholder="Enter your date of birth">
               </div>
               <div class="form-group">
-                <label for="phoneNumber">Phone Number</label>
-                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
+                <label for="phone_no">Phone Number</label>
+                <input type="tel" class="form-control" id="phone_no" name="phone_no" placeholder="Enter your phone number">
               </div>
               <div class="form-group">
                 <label for="gender">Gender</label>
-                <select class="form-control" id="gender">
+                <select class="form-control" id="gender" name="gender">
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
