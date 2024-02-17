@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify, session, redirect, url_for, render_template
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
 import json
-from typing import TypedDict
 import datetime
 import uuid
 import os
