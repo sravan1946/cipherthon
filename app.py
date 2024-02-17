@@ -10,6 +10,7 @@ from flask_login import (
 import json
 import datetime
 import uuid
+from utils import gen_qr_link
 import os
 
 
@@ -64,7 +65,7 @@ def index():
 @app.route("/userlogin", methods=["POST", "GET"])
 def user_login():
     if current_user.is_authenticated:
-        return redirect(url_for("index"))
+        return redirect(url_for("userdashboard"))
     try:
         with open("./data/users.json", "r") as f:
             users = json.load(f)
@@ -82,7 +83,7 @@ def user_login():
                 user = User(**user)
                 login_user(user)
                 logged_in = True
-                return redirect(url_for("index"))
+                return redirect(url_for("userdashboard"))
         if not logged_in:
             return render_template("userlogin.html", error="Invalid email or password")
     return render_template("userlogin.html")
@@ -91,7 +92,7 @@ def user_login():
 @app.route("/userregister", methods=["POST", "GET"])
 def user_register():
     if current_user.is_authenticated:
-        return redirect(url_for("index"))
+        return redirect(url_for("userdashboard"))
     if request.method == "POST":
         pid = uuid.uuid4().int
         print(request.form, pid)
@@ -121,9 +122,16 @@ def user_register():
         with open("./data/users.json", "w") as f:
             json.dump(users, f, default=lambda x: x.__dict__())
         login_user(user)
-        return redirect(url_for("index"))
+        return redirect(url_for("userlogin"))
     return render_template("userregister.html")
 
+
+@app.route("/userdashboard")
+@login_required
+def user_dashboard():
+    qr = request.environ.get('HTTP_X_REAL_IP', request.remote_addr) + "/profile/" + current_user.pid
+    print(qr)
+    return render_template("userdashboard.html")
 
 @app.route("/logout")
 @login_required
