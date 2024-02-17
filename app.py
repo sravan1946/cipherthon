@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, session, redirect, url_for, render_template
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 import json
 from typing import TypedDict
 import datetime
@@ -18,7 +18,16 @@ class User(TypedDict):
 app = Flask(__name__)
 
 login_manager = LoginManager(app)
-# login_manager.init_app(app)
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    with open("./data/users.json", "r") as f:
+        users = json.load(f)
+    for user in users:
+        if user["pid"] == user_id:
+            return User(**user)
+    return None
 
 @app.route("/")
 def index():
@@ -28,8 +37,13 @@ def index():
 def user_login():
     if current_user.is_authenticated:
         return redirect(url_for("index"))
-    with open("./data/users.json", "r") as f:
-        users = json.load(f)
+    try:
+        with open("./data/users.json", "r") as f:
+            users = json.load(f)
+    except FileNotFoundError:
+        with open("./data/users.json", "w") as f:
+            json.dump([], f)
+        users = []
     if request.method == "POST":
         email: str = request.form["email"]
         password: str = request.form["password"]
@@ -61,8 +75,13 @@ def user_register():
             gender=gender,
             DOB=DOB
         )
-        with open("./data/users.json", "r") as f:
-            users = json.load(f)
+        try:
+            with open("./data/users.json", "r") as f:
+                users = json.load(f)
+        except FileNotFoundError:
+            with open("./data/users.json", "w") as f:
+                json.dump([], f)
+            users = []
         users.append(user)
         with open("./data/users.json", "w") as f:
             json.dump(users, f)
