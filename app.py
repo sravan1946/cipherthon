@@ -132,6 +132,11 @@ def user_register():
     return render_template("userregister.html")
 
 
+@app.route("/userreport")
+@login_required
+def user_report():
+    return render_template("uploadreport.html")
+
 @app.route("/userdashboard")
 @login_required
 def user_dashboard():
