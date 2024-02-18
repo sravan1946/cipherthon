@@ -94,7 +94,7 @@ def user_register():
     if current_user.is_authenticated:
         return render_template("userdashboard")
     if request.method == "POST":
-        pid = uuid.uuid4().int
+        pid = os.urandom(14)
         name: str = request.form["name"]
         email: str = request.form["email"]
         password: str = request.form["password"]
