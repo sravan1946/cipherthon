@@ -66,7 +66,7 @@ def index():
 @app.route("/userlogin", methods=["POST", "GET"])
 def user_login():
     if current_user.is_authenticated:
-        return redirect(url_for("userdashboard"))
+        return redirect(url_for("user_dashboard"))
     try:
         with open("./data/users.json", "r") as f:
             users = json.load(f)
