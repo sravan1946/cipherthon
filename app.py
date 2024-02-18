@@ -51,7 +51,7 @@ def load_user(user_id):
     with open("./data/users.json", "r") as f:
         users = json.load(f)
     for user in users:
-        if user["pid"] == user_id:
+        if user["pid"] == int(user_id):
             return User(**user)
     return None
 
@@ -81,12 +81,14 @@ def user_login():
         for user in users:
             if user["email"] == email and user["password"] == password:
                 user = User(**user)
-                login_user(user)
+                login_user(user, force=True)
+                session['logged_in'] = True
                 logged_in = True
-                return render_template("userdashboard.html", qrcode=gen_qrcode(current_user))
+                return redirect(url_for("user_dashboard"))
         if not logged_in:
             return render_template("userlogin.html", error="Invalid email or password")
-    return render_template("userlogin.html")
+    error = request.args.get("error")
+    return render_template("userlogin.html", error=error)
 
 
 @app.route("/userregister", methods=["POST", "GET"])
@@ -118,19 +120,20 @@ def user_register():
                 json.dump([], f)
             users = []
         if user.email in [user['email'] for user in users]:
-            return redirect(url_for("user_login"))
+            return redirect(url_for("user_login", error="User already exists. Please login."))
         users.append(user)
         with open("./data/users.json", "w") as f:
             json.dump(users, f, default=lambda x: x.__dict__())
-        login_user(user)
-        return redirect(url_for("user_login", message="User registered successfully. Please login to continue."))
+        login_user(user, force=True)
+        session['logged_in'] = True
+        return redirect(url_for("user_login", error="User registered successfully. Please login."))
     return render_template("userregister.html")
 
 
 @app.route("/userdashboard")
 @login_required
 def user_dashboard():
-    return render_template("userdashboard.html", qrcode=gen_qrcode(current_user.pid))
+    return render_template("userdashboard.html", qrcode=gen_qrcode(current_user))
 
 @app.route("/logout")
 @login_required
@@ -138,7 +141,8 @@ def logout():
     if not current_user.is_authenticated:
         return redirect(url_for("user_login"))
     logout_user()
-    return render_template("index")
+    session['logged_in'] = False
+    return render_template("index.html", current_user=current_user)
 
 @app.route("/profile/<int:pid>")
 def profile(pid):
