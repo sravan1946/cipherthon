@@ -24,7 +24,6 @@ class User(UserMixin):
         self.phone_no = phone_no
         self.gender = gender
         self.DOB = DOB
-        self.reports = []
 
     def get_id(self):
         return str(self.pid)
@@ -38,7 +37,6 @@ class User(UserMixin):
             "phone_no": self.phone_no,
             "gender": self.gender,
             "DOB": self.DOB,
-            "reports": self.reports,
         }
 
 
@@ -136,6 +134,11 @@ def user_register():
 @login_required
 def user_report():
     return render_template("uploadreport.html")
+
+@app.route("/viewreports")
+@login_required
+def view_reports():
+    return render_template("viewreports.html")
 
 @app.route("/userdashboard")
 @login_required
