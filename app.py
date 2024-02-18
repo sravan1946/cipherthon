@@ -161,5 +161,6 @@ def profile(pid):
         users = json.load(f)
     for user in users:
         if user["pid"] == pid:
+            user.pop("password")
             return jsonify(user)
     return "User not found", 404

@@ -6,36 +6,91 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
+<style>
+
+
+body {
+  background-color: #111111;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200vh;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background-repeat: repeat;
+  animation: bg-animation .2s infinite;
+  opacity: .9;
+  visibility: visible;
+}
+
+@keyframes bg-animation {
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) }
+    40% { transform: translate(-5%,15%) }
+    50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) }
+    70% { transform: translate(0,10%) }
+    80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) }
+    100% { transform: translate(5%,0) }
+}
+
+</style>
+
+
+
 </head>
 <body>
-    <section class="text-gray-600 body-font relative">
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" href="index.html">
+        <span class="ml-3 text-2xl">HealthLink</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 hover:text-white" href="index.html#services">Services</a>
+        <a class="mr-5 hover:text-white" href="index.html#testimonial">Testimonials</a>
+        <a class="mr-5 hover:text-white" href="index.html#contactus">Contact Us</a>
+    </nav>
+    </div>
+  </header>
+<div class="bg"></div>
+    <section class="text-white body-font relative">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-col text-center w-full mb-12">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Upload your report</h1>
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Upload your report</h1>
           </div>
           <div class="lg:w-1/2 md:w-2/3 mx-auto">
             <div class="flex flex-wrap -m-2">
               <div class="p-2 w-1/2">
                 <div class="relative">
-                  <label for="name" class="leading-7 text-sm text-gray-600">Doctor name</label>
-                  <input type="text" id="name" name="docname" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                  <label for="name" class="leading-7 text-sm text-white">Doctor name</label>
+                  <input type="text" id="name" name="docname" class="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                 </div>
               </div>
               <div class="p-2 w-1/2">
                 <div class="relative">
-                  <label for="email" class="leading-7 text-sm text-gray-600">Date of Diagnosis</label>
-                  <input type="date" id="dod" name="dod" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                  <label for="email" class="leading-7 text-sm text-white">Date of Diagnosis</label>
+                  <input type="date" id="dod" name="dod" class="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                 </div>
               </div>
               <div class="p-2 w-full">
                 <div class="relative">
-                  <label for="Remark" class="leading-7 text-sm text-gray-600">Remark</label>
-                  <textarea id="remark" name="remark" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                  <label for="Remark" class="leading-7 text-sm text-white">Remark</label>
+                  <textarea id="remark" name="remark" class="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-black py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                 </div>
                 <div class="p-2 w-1/2">
                     <div class="relative">
-                      <label for="Report" class="leading-7 text-sm text-gray-600">Report</label>
-                      <input type="file" id="file" name="file" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                      <label for="Report" class="leading-7 text-sm text-white">Report</label>
+                      <input type="file" id="file" name="file" class="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     </div>
                   </div>
               </div>

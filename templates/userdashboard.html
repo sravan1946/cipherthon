@@ -5,6 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        
+
+      html {
+height:100%;
+}
+
+body {
+margin:0;
+}
+
+.bg {
+animation:slide 3s ease-in-out infinite alternate;
+background-image: linear-gradient(-60deg, rgb(51, 204, 171) 50%, rgb(68, 173, 244) 50%);
+bottom:0;
+left:-50%;
+opacity:.5;
+position:fixed;
+right:-50%;
+top:0;
+z-index:-1;
+}
+
+.bg2 {
+animation-direction:alternate-reverse;
+animation-duration:4s;
+}
+
+.bg3 {
+animation-duration:5s;
+}
+
+.content {
+background-color:rgba(255,255,255,.8);
+border-radius:.25em;
+box-shadow:0 0 .25em rgba(0,0,0,.25);
+box-sizing:border-box;
+left:50%;
+padding:10vmin;
+position:fixed;
+text-align:center;
+top:50%;
+transform:translate(-50%, -50%);
+}
+
+h1 {
+font-family:monospace;
+}
+
+@keyframes slide {
+0% {
+  transform:translateX(-25%);
+}
+100% {
+  transform:translateX(25%);
+}
+}
+
+
+  </style>
+
+
 </head>
 <body>
     <header class="text-gray-600 body-font">
@@ -19,8 +81,13 @@
         </nav>
         </div>
       </header>
+      
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    
       <!--banner section-->
-      <section class="text-gray-600 body-font">
+      <section class="text-blue-600 body-font">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap w-full mb-20">
             <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -30,7 +97,7 @@
           </div>
           <div class="flex flex-wrap -m-4">
             <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg">
+              <div class="bg-gray-100 p-6 rounded-lg opacity-75">
                 <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{url_for('static',filename='assets/reportdown.png')}}" alt="content">
                 <h2 class="text-lg text-indigo-500 font-medium title-font mb-1">Upload Reports</h2>
                 <p class="leading-relaxed text-base">Upload your medical records securely and conveniently to keep your healthcare information organized and accessible</p>
@@ -59,7 +126,7 @@
               </div>
             </div>
             <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg">
+              <div class="bg-gray-100 p-6 rounded-lg opacity-75">
                 <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{url_for('static',filename='assets/reportup.png')}}" alt="content">
                 <h2 class="text-lg text-indigo-500 font-medium title-font mb-1"><a href="viewreport.html">View Reports</a></h2>
                 <p class="leading-relaxed text-base">Easily access and review your previous medical reports for a comprehensive understanding of your health history.</p>
@@ -72,10 +139,10 @@
               </div>
             </div>
             <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg">
-                <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{url_for('static',filename='assets/dc2.webp')}}" alt="content">
-                <h2 class="text-lg text-indigo-500 font-medium title-font mb-1">Book Appointment</h2>
-                <p class="leading-relaxed text-base">Schedule your next appointment with a doctor hassle-free and prioritize your health with ease.</p>
+              <div class="bg-gray-100 p-6 rounded-lg opacity-75">
+                <img class="opacity-100 h-40 rounded w-full object-cover object-center mb-6" src="{{url_for('static',filename='assets/dc2.webp')}}" alt="content">
+                <h2 class="opacity-100 text-lg text-indigo-500 font-medium title-font mb-1">Book Appointment</h2>
+                <p class="opacity-100 leading-relaxed text-base">Schedule your next appointment with a doctor hassle-free and prioritize your health with ease.</p>
                 <a class="text-indigo-500 flex items-center justify-center">Book Now
                   <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>
