@@ -62,7 +62,9 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
               </div>
+              {% if error %}
               <span class="error-text">{{error}}</span>
+              {% endif %}
               <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
           </div>

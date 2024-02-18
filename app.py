@@ -86,7 +86,8 @@ def user_login():
                 return render_template("userdashboard.html", qrcode=gen_qrcode(current_user))
         if not logged_in:
             return render_template("userlogin.html", error="Invalid email or password")
-    return render_template("userlogin.html")
+    error = request.args.get("error")
+    return render_template("userlogin.html", error=error)
 
 
 @app.route("/userregister", methods=["POST", "GET"])
@@ -118,12 +119,12 @@ def user_register():
                 json.dump([], f)
             users = []
         if user.email in [user['email'] for user in users]:
-            return redirect(url_for("user_login"))
+            return redirect(url_for("user_login", error="User already exists. Please login."))
         users.append(user)
         with open("./data/users.json", "w") as f:
             json.dump(users, f, default=lambda x: x.__dict__())
         login_user(user)
-        return redirect(url_for("user_login", message="User registered successfully. Please login to continue."))
+        return redirect(url_for("user_login", error="User registered successfully. Please login."))
     return render_template("userregister.html")
 
 
