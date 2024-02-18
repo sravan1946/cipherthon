@@ -21,47 +21,67 @@
       </header>
       <!--banner section-->
       <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto flex flex-wrap">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap w-full mb-20">
+            <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+              <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Hello, {{username}}</h1>
+              <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+            </div>
+          </div>
           <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2 md:w-full">
-              <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-                <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            <div class="xl:w-1/4 md:w-1/2 p-4">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/720x400" alt="content">
+                <h2 class="text-lg text-indigo-500 font-medium title-font mb-1">Upload Reports</h2>
+                <p class="leading-relaxed text-base">Upload your medical records securely and conveniently to keep your healthcare information organized and accessible</p>
+                <a class="text-indigo-500 flex items-center justify-center">Upload
+                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
                   </svg>
+                </a>
+              </div>
+            </div>
+            <div class="xl:w-1/2 md:w-1/2 p-4">
+              <div class="flex justify-around bg-slate-800 p-6 rounded-lg">
+                <div class=" text-white text-xl">
+                  <h2 class=""><span class="health-symbol">☤</span><strong> Health Card</strong></h2>
+                  <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                  <p class="mt-5">Name: {{current_user.name}}</p>
+                  <p>DOB: {{current_user.DOB}}</p>
+                  <p>Gender: {{current_user.gender}}</p>
+                  <p>{{current_user.pid}}</p>
                 </div>
-                <div class="flex-grow">
-                  <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Upload past Records</h2>
-                  <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                  <a class="mt-3 text-indigo-500 inline-flex items-center" href="">Upload now
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
+                <div class="qr-code">
+                  <!-- Replace the QR code image source with an actual QR code generator -->
+                  <img src="{{ qrcode.png_data_uri(dark='darkblue', data_dark='steelblue', alignment_dark='darkgreen', scale=3) }}">
                 </div>
               </div>
             </div>
-            <div class="p-4 lg:w-1/2 md:w-full">
-              <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-                <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
+            <div class="xl:w-1/4 md:w-1/2 p-4">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/722x402" alt="content">
+                <h2 class="text-lg text-indigo-500 font-medium title-font mb-1">View Reports</h2>
+                <p class="leading-relaxed text-base">Easily access and review your previous medical reports for a comprehensive understanding of your health history.</p>
+                <a class="text-indigo-500 flex items-center justify-center">View
+                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
                   </svg>
-                </div>
-                <div class="flex-grow">
-                  <div class="card">
-                    <h2><span class="health-symbol">☤</span> Health Card</h2>
-                    <p><strong>Name:</strong> John Doe</p>
-                    <p><strong>DOB:</strong> January 15, 1985</p>
-                    <p><strong>Gender:</strong> Male</p>
-                    <p><strong>Unique ID:</strong> ABC123456</p>
-          
-                        <!-- Replace the QR code image source with an actual QR code generator -->
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=JohnDoe-ABC123456" alt="QR Code">
-                   
-                </div>
-                </div>
+                </a>
+              </div>
+            </div>
+            <div class="xl:w-1/4 md:w-1/2 p-4">
+              <div class="bg-gray-100 p-6 rounded-lg">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
+                <h2 class="text-lg text-indigo-500 font-medium title-font mb-1">Book Appointment</h2>
+                <p class="leading-relaxed text-base">Schedule your next appointment with a doctor hassle-free and prioritize your health with ease.</p>
+                <a class="text-indigo-500 flex items-center justify-center">Book Now
+                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>

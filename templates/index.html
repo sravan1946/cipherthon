@@ -15,9 +15,9 @@
                 <span class="ml-3 text-2xl">HealthLink</span>
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-gray-900">Services</a>
-                <a class="mr-5 hover:text-gray-900">Testimonials</a>
-                <a class="mr-5 hover:text-gray-900">Contact Us</a>
+                <a class="mr-5 hover:text-gray-900" href="#services">Services</a>
+                <a class="mr-5 hover:text-gray-900" href="#testimonial">Testimonials</a>
+                <a class="mr-5 hover:text-gray-900" href="#contactus">Contact Us</a>
             </nav>
             {% if current_user.is_anonymous %}
             <form action="{{url_for('user_login')}}">
@@ -59,17 +59,45 @@
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div
                 class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Before they sold out
-                    <br class="hidden lg:inline-block">readymade gluten
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Empowering Your Health Journey,
+                    <br class="hidden lg:inline-block"> Welcome to HealthLink
                 </h1>
-                <p class="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
-                    plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken
-                    authentic tumeric truffaut hexagon try-hard chambray.</p>
+                <p class="mb-8 leading-relaxed">At HealthLink, we're dedicated to providing you with the tools to take control of your health. From securely uploading and storing your medical data to accessing personalized insights, our platform is designed to support your healthcare journey every step of the way</p>
                 <div class="flex justify-center">
-                    <button
-                        class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-                    <button
-                        class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
+                    
+            {% if current_user.is_anonymous %}
+            <form action="{{url_for('user_login')}}">
+            <button
+                class="inline-flex items-center bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 text-white rounded text-base mt-4 md:mt-0 ml-2">Log
+                in
+
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </button>
+            </form>
+
+            <form action="{{url_for('user_register')}}">
+            <button
+                class="inline-flex items-center bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 text-white rounded text-base mt-4 md:mt-0 ml-2">Signup
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </button>
+            </form>
+            {% else %}
+            <form action="{{url_for('logout')}}">
+            <button
+                class="inline-flex items-center bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 text-white rounded text-base mt-4 md:mt-0 ml-2">Logout
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </button>
+            </form>
+            {% endif %}
                 </div>
             </div>
             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
@@ -82,11 +110,9 @@
     <section class="text-gray-600 body-font" id="services">
         <div class="container px-5 py-24 mx-auto">
             <div class="text-center mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Raw Denim Heirloom Man Braid
+                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Our Comprehensive Services at HealthLink
                 </h1>
-                <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Blue bottle crucifix vinyl
-                    post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing
-                    banh mi pug.</p>
+                <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Blue Discover the essential services offered by Us to streamline your healthcare experience.</p>
                 <div class="flex mt-6 justify-center">
                     <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
                 </div>
@@ -101,39 +127,26 @@
                         </svg>
                     </div>
                     <div class="flex-grow">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Shooting Stars</h2>
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
-                            vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard.
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Healthcare Coordination</h2>
+                        <p class="leading-relaxed text-base">Streamline communication and collaboration between you, your providers, and specialists for a smoother healthcare experience.
                         </p>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        
                     </div>
                 </div>
                 <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
                     <div
                         class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5 flex-shrink-0">
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
-                            <circle cx="6" cy="6" r="3"></circle>
-                            <circle cx="6" cy="18" r="3"></circle>
-                            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-13 h-12 ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                          </svg>
+                          
                     </div>
+                    
                     <div class="flex-grow">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-3">The Catalyzer</h2>
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
-                            vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard.
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Appointment Booking</h2>
+                        <p class="leading-relaxed text-base">Book appointments with healthcare providers seamlessly and receive timely reminders to stay organized with your healthcare schedule.
                         </p>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        
                     </div>
                 </div>
                 <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
@@ -146,21 +159,14 @@
                         </svg>
                     </div>
                     <div class="flex-grow">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Neptune</h2>
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
-                            vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard.
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Secure Data Management</h2>
+                        <p class="leading-relaxed text-base">Effortlessly upload and securely store your medical records for convenient access anytime, anywhere
                         </p>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
                     </div>
                 </div>
             </div>
             <button
-                class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
+                class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Learn More</button>
         </div>
     </section>
     <!--testimonial-->
@@ -178,12 +184,10 @@
                         <img alt="testimonial"
                             class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
                             src="https://dummyimage.com/302x302">
-                        <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki
-                            taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote
-                            bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
+                        <p class="leading-relaxed">"HealthLink has been a game-changer for me. From easily storing my medical records to booking appointments with specialists, everything is so much more convenient now. Highly recommended!</p>
                         <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
-                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HOLDEN CAULFIELD</h2>
-                        <p class="text-gray-500">Senior Product Designer</p>
+                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm"> Sara Khan</h2>
+                        <p class="text-gray-500">Mumbai</p>
                     </div>
                 </div>
                 <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
@@ -191,12 +195,10 @@
                         <img alt="testimonial"
                             class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
                             src="https://dummyimage.com/300x300">
-                        <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki
-                            taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote
-                            bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
+                        <p class="leading-relaxed">I can't thank HealthLink enough for their personalized health insights. The recommendations have helped me make positive changes to my lifestyle, and I feel better than ever!</p>
                         <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
-                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">ALPER KAMU</h2>
-                        <p class="text-gray-500">UI Develeoper</p>
+                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">Sumit Kumar</h2>
+                        <p class="text-gray-500">Delhi</p>
                     </div>
                 </div>
                 <div class="lg:w-1/3 lg:mb-0 p-4">
@@ -204,12 +206,10 @@
                         <img alt="testimonial"
                             class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
                             src="https://dummyimage.com/305x305">
-                        <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki
-                            taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote
-                            bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
+                        <p class="leading-relaxed">"HealthLink's coordination services have made managing my chronic condition a breeze. Seamless communication with all my healthcare providers has truly improved my quality of life.</p>
                         <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
-                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HENRY LETHAM</h2>
-                        <p class="text-gray-500">CTO</p>
+                        <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">Anurag thakur</h2>
+                        <p class="text-gray-500">Indore</p>
                     </div>
                 </div>
             </div>
@@ -248,7 +248,7 @@
                     </div>
                     <div class="p-2 w-full">
                         <button
-                            class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
+                            class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send</button>
                     </div>
                 </div>
             </div>
