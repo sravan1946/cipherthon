@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session, redirect, url_for, render_template
+from flask import Flask, flash, request, jsonify, session, redirect, url_for, render_template
 from flask_login import (
     LoginManager,
     login_user,
@@ -94,7 +94,7 @@ def user_register():
     if current_user.is_authenticated:
         return render_template("userdashboard")
     if request.method == "POST":
-        pid = os.urandom(14)
+        pid: int = int(str(uuid.uuid4().int)[:14])
         name: str = request.form["name"]
         email: str = request.form["email"]
         password: str = request.form["password"]
@@ -117,11 +117,13 @@ def user_register():
             with open("./data/users.json", "w") as f:
                 json.dump([], f)
             users = []
+        if user.email in [user['email'] for user in users]:
+            return redirect(url_for("user_login"))
         users.append(user)
         with open("./data/users.json", "w") as f:
             json.dump(users, f, default=lambda x: x.__dict__())
         login_user(user)
-        return render_template("userlogin")
+        return redirect(url_for("user_login", message="User registered successfully. Please login to continue."))
     return render_template("userregister.html")
 
 
